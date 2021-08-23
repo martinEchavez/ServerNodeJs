@@ -5,16 +5,13 @@ const getChat = (userId) => {
 };
 
 const addChat = (users) => {
-    return new Promise((res, rej) => {
-        if (!users || !Array.isArray(users)) {
-            return rej('[chatController] invalid user list');
-        }
-
-        const chat = {
-            users
-        };
-        res(add(chat));
-    });
+    if (!users || !Array.isArray(users)) {
+        return Promise.reject('[chatController] invalid user list');
+    }
+    const chat = {
+        users
+    };
+    return add(chat);
 };
 
 module.exports = {

@@ -5,9 +5,9 @@ const { addMessage, getMessage, updateMessage, deleteMessage } = require('./cont
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    const { user } = req.query;
+    const filterMessages = req.query.chat || null;
     try {
-        const data = await getMessage(user || null);
+        const data = await getMessage(filterMessages);
         response.success(req, res, 200, false, 'message success', data);
     } catch (error) {
         response.error(req, res, 400, true, 'error message', error);
@@ -15,9 +15,9 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const { user, message } = req.body;
+    const { chat, user, message } = req.body;
     try {
-        const data = await addMessage(user, message);
+        const data = await addMessage(chat, user, message);
         response.success(req, res, 200, false, 'message created', data);
     } catch (error) {
         response.error(req, res, 400, true, 'message error', error);

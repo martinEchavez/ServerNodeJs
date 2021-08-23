@@ -10,11 +10,11 @@ const listChat = async (userId) => {
         }
         Model.find(filter)
             .populate('users')
-            .exec((error, populate) => {
+            .exec((error, populated) => {
                 if (error) {
                     return rej(error);
                 }
-                res(populate);
+                res(populated);
             });
     });
 };

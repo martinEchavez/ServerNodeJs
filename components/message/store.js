@@ -1,12 +1,10 @@
 const Model = require('./model');
 
-const getMessages = (filterUser) => {
+const getMessages = (filterChat) => {
     return new Promise((res, rej) => {
         let filter = {};
-        if (filterUser !== null) {
-            filter = {
-                user: new RegExp(filterUser, 'i')
-            };
+        if (filterChat !== null) {
+            filter = { chat: filterChat };
         }
         Model.find(filter)
             .populate('user')

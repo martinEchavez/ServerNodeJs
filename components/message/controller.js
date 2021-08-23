@@ -1,18 +1,19 @@
 const { add, list, update, remove } = require("./store");
 
-const getMessage = (user) => {
+const getMessage = (filterChat) => {
     return new Promise((res, rej) => {
-        const result = list(user);
+        const result = list(filterChat);
         res(result);
     });
 }
 
-const addMessage = (user, message) => {
+const addMessage = (chat, user, message) => {
     return new Promise((res, rej) => {
-        if (!user || !message) {
-            return rej('[messageController] incorrect user or message');
+        if (!chat, !user || !message) {
+            return rej('[messageController] incorrect user, message or chat');
         }
         const fullMessage = {
+            chat,
             user,
             message,
             date: new Date()
@@ -34,7 +35,7 @@ const updateMessage = (id, message) => {
 
 const deleteMessage = (id) => {
     return new Promise(async (res, rej) => {
-        if(!id) {
+        if (!id) {
             return rej('[messageController] incorrect id');
         }
         const result = await remove(id);
