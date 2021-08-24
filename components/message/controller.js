@@ -7,16 +7,24 @@ const getMessage = (filterChat) => {
     });
 }
 
-const addMessage = (chat, user, message) => {
+const addMessage = (chat, user, message, file) => {
     return new Promise((res, rej) => {
         if (!chat, !user || !message) {
             return rej('[messageController] incorrect user, message or chat');
         }
+
+        let fileUrl = '';
+
+        if (file) {
+            fileUrl = 'http://localhost:3000/app/files/' + file.filename;
+        }
+
         const fullMessage = {
             chat,
             user,
             message,
-            date: new Date()
+            date: new Date(),
+            file: fileUrl
         };
         add(fullMessage);
         res(fullMessage);
