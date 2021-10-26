@@ -1,6 +1,7 @@
 const express = require('express');
+require('dotenv').config();
 const PORT = process.env.PORT || 3000;
-const URL = process.env.URL || 'mongodb+srv://admin:admin@prueba.t0nnp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const URL = process.env.URL;
 
 // Connection file
 const db = require('./db');
@@ -19,5 +20,5 @@ app.use(express.urlencoded({ extended: false }));
 router(app);
 
 app.listen(PORT, () => {
-    console.log(`Server on PORT ${PORT}`)
+  console.log(`Server on PORT ${PORT}`);
 });
