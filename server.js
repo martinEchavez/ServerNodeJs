@@ -1,7 +1,7 @@
 const express = require('express');
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
-const URL = process.env.URL;
+const URL = process.env.URL_MONGODB;
 
 // Connection file
 const db = require('./db');
